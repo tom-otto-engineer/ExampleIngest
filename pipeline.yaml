@@ -1,7 +1,4 @@
-# flake8: noqa
-
-- This will skip the files in question for PEP8 compliance
-
+#note this is bitbucket pipeline
 For this pipeline:
 
 
