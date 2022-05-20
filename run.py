@@ -4,15 +4,11 @@ import configargparse as argparse
 from newtools import log_to_stdout
 from ingest import IngestClass
 
-parser = argparse.ArgumentParser(
-description="""Ingests for a given TV, validates data, creates DB + table, 
-            then partitions cleaned data by day and tv_type
-
-""",
-formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-add_config_file_help=False,
-add_env_var_help=False,
-)
+parser = argparse.ArgumentParser(description="""Ingests for a given TV, validates data, creates DB + table, 
+                                 then partitions cleaned data by day and tv_type""",
+                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+                                 add_config_file_help=False,
+                                 add_env_var_help=False,)
 
 parser.add_argument("-tv", "--tv_type", help='tv_type for running the function', required=True, type=str),
 
