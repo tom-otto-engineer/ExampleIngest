@@ -77,39 +77,6 @@ class IngestClass:
         except Exception as e:
             logger.error(str(e))
 
-    def setup(self):
-        self.ac.add_query("CREATE DATABASE IF NOT EXISTS {}".format(self.database),
-                          name="build database {} if doesnt exist".format(self.database),
-                          output_location=self.athena_temp)
-        self.ac.wait_for_completion()
-        self.create_table()
-
-    def create_table(self):
-        sql_path = os.path.join(self.sql_path, "create_table.sql")
-        with open(sql_path) as f:
-            query = f.read()
-        self.ac.add_query(query.format(table=self.table, location=self.output_location),
-                          name="build table {}.{} if doesnt exist".format(self.database,
-                                                                          self.table),
-                          output_location=self.athena_temp)
-        self.ac.wait_for_completion()
-
-    def drop_table(self):
-        self.ac.add_query("""
-                            DROP TABLE IF EXISTS {}
-                          """.format(self.table),
-                          name="drop table {}.{} if exists".format(self.database, self.table),
-                          output_location=self.athena_temp)
-        self.ac.wait_for_completion()
-
-    def teardown(self):
-        self.drop_table()
-        self.ac.add_query("DROP DATABASE IF EXISTS {}".format(self.database),
-                          name="drop database {} if exists".format(self.database),
-                          output_location=self.athena_temp)
-        self.ac.wait_for_completion()
-        self.create_table()
-
     def ingest(self):
         """
         Ingests data, will query for all data we receive each and everytime
@@ -143,6 +110,39 @@ class IngestClass:
                 logger.error("No key to process")
         except Exception as e:
             logger.error(str(e))
+
+    def setup(self):
+        self.ac.add_query("CREATE DATABASE IF NOT EXISTS {}".format(self.database),
+                          name="building db {} if doesnt exist".format(self.database),
+                          output_location=self.athena_temp)
+        self.ac.wait_for_completion()
+        self.create_table()
+
+    def create_table(self):
+        sql_path = os.path.join(self.sql_path, "create_table.sql")
+        with open(sql_path) as f:
+            query = f.read()
+        self.ac.add_query(query.format(table=self.table, location=self.output_location),
+                          name="build table {}.{} if doesnt exist".format(self.database,
+                                                                          self.table),
+                          output_location=self.athena_temp)
+        self.ac.wait_for_completion()
+
+    def drop_table(self):
+        self.ac.add_query("""
+                            DROP TABLE IF EXISTS {}
+                          """.format(self.table),
+                          name="drop table {}.{} if exists".format(self.database, self.table),
+                          output_location=self.athena_temp)
+        self.ac.wait_for_completion()
+
+    def teardown(self):
+        self.drop_table()
+        self.ac.add_query("DROP DATABASE IF EXISTS {}".format(self.database),
+                          name="drop db {} if exists".format(self.database),
+                          output_location=self.athena_temp)
+        self.ac.wait_for_completion()
+        self.create_table()
 
 
 if __name__ == '__main__':
