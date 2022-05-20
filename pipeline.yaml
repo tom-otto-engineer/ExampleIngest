@@ -1,0 +1,32 @@
+# flake8: noqa
+
+- This will skip the files in question for PEP8 compliance
+
+For this pipeline:
+
+
+image: python:3.8
+
+pipelines:
+  default:
+    - step:
+        name: Unit Test and Test Coverage
+        caches:
+          - pip
+        script:
+          - pip install --upgrade pip==20.2.4
+          - pip install --upgrade -r ./requirements.txt
+          - pip install coverage nose
+          - nosetests --with-coverage --verbosity=3 --nologcapture --stop
+    - step:
+        name: Code Style Compliance
+        caches:
+          - pip
+        script:
+          - pip install flake8
+          - pip install pep8-naming
+          - pip install flake8-variables-names
+          - pip install flake8-eradicate
+          - pip install flake8-comprehensions
+          - pip install flake8-return
+          - flake8 . --extend-exclude=dist,build --max-line-length 120 --show-source --statistics
