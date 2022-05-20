@@ -3,7 +3,6 @@ import logging
 import configargparse as argparse
 from newtools import log_to_stdout
 from ingest import IngestClass
-#test
 
 parser = argparse.ArgumentParser(description="""Ingests for a given TV, validates data, creates DB + table, 
                                  then partitions cleaned data by day and tv_type""",
