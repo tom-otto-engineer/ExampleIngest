@@ -8,7 +8,7 @@ clean and partition data by day and tv type.
 - Dynamically create DB, and table, specific to tv type  
 - Automatically add missing partitions to the table ie// missing day and tv type
 - Unclean data will be removed and sent to a quarantine location 
-
+ 
 
 ## Setup
 
