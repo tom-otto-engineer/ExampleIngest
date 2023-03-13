@@ -2,7 +2,7 @@ import os
 import boto3
 import logging
 import pandas as pd
-#from dativa.tools.aws import S3Client
+from s3_client.s3_client import S3Client
 from newtools.aws import AthenaPartition
 from dativa.scrubber import PersistentFieldLogger, Scrubber
 from newtools import DoggoFileSystem, S3Location, AthenaClient, log_to_stdout, PandasDoggo
