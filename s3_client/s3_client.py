@@ -2,6 +2,7 @@ import logging
 import fnmatch
 import os
 from urllib import parse
+import numpy
 
 try:
     import boto3
