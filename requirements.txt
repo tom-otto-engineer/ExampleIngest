@@ -9,6 +9,6 @@ pandas==1.5.3
 pyarrow==11.0.0
 s3fs==0.6.0
 dativascrubber==1.2.150
-dativatools==3.3.832
+newtools==2.2.448
 configargparse==1.5.3
 
