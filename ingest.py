@@ -17,7 +17,6 @@ stat_logger = PersistentFieldLogger(logger, {"message": ""})
 class IngestClass:
     """
 
-    Pavel Test
     This class will Ingest match data for a given sports tv type
     It will then clean the data according to the scrubber configurations
     Output the data in a S3 location of your choice
