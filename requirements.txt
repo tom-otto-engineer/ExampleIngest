@@ -10,4 +10,4 @@ s3fs==0.6.0
 dativascrubber==1.2.150
 newtools==2.2.448
 configargparse==1.5.3
-
+matplotlib==3.7.1
