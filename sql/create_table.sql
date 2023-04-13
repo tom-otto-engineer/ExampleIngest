@@ -1,7 +1,7 @@
 CREATE EXTERNAL TABLE IF NOT EXISTS `{table}`(
   `brand` string COMMENT 'from deserializer',
   `resolution` string COMMENT 'from deserializer',
-  `size` string COMMENT 'from deserializer',
+  `size` string,
   `selling_price` string COMMENT 'from deserializer',
   `oringinal_price` string COMMENT 'from deserializer',
   `os` string COMMENT 'from deserializer',
