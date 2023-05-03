@@ -105,7 +105,7 @@ class IngestClass:
                                         output_location=self.athena_temp)
                 for query in list_query:
                     self.ac.add_query(query, output_location=self.athena_temp)
-                self.ac.wait_for_completion()
+                self.ac.wait_for_completion() "hello"
             else:
                 logger.error("No key to process")
         except Exception as e:
