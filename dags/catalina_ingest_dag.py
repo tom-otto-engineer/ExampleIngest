@@ -12,12 +12,11 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-
 # Define your custom Python function to run 'ingest.py'
 def run_ingest_script():
     try:
         # Change directory to where 'ingest.py' is located
-        os.chdir('/Users/tomotto/PycharmProjects/ExampleIngest/ingest.py')
+        os.chdir('/Users/tomotto/PycharmProjects/ExampleIngest/')
 
         # Run 'ingest.py'
         os.system('python ingest.py')
